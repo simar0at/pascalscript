@@ -103,7 +103,7 @@ begin
       begin
         // don't pass an empty filename to LoadLibrary, just treat it as uncallable
         p.Ext2 := Pointer(1);
-        ErrorCode := ERROR_MOD_NOT_FOUND;
+        //ErrorCode := ERROR_MOD_NOT_FOUND;
         Result := False;
         exit;
       end;
@@ -134,7 +134,7 @@ begin
       if dllhandle = 0 then
       begin
         p.Ext2 := Pointer(1);
-        ErrorCode := GetLastError;
+        //ErrorCode := GetLastError;
         Result := False;
         exit;
       end;
@@ -153,7 +153,7 @@ begin
   if p.Ext1 = nil then
   begin
     p.Ext2 := Pointer(1);
-    ErrorCode := GetLastError;
+    //ErrorCode := GetLastError;
     Result := false;
     exit;
   end;
