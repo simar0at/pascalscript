@@ -5,14 +5,13 @@ unit ide_editor;
 interface
 
 uses
-  Windows, SysUtils, Classes, Graphics, Controls, Forms,
+  SysUtils, Classes, Graphics, Controls, Forms,
   Dialogs, Menus, ExtCtrls, StdCtrls, ComCtrls,
   SynEdit, SynEditTypes, SynHighlighterPas,
   uPSComponent_COM, uPSComponent_StdCtrls, uPSComponent_Forms,
   uPSComponent_Default, uPSComponent_Controls,
   uPSRuntime, uPSDisassembly, uPSUtils,
-  uPSComponent, uPSDebugger, SynEditRegexSearch, 
-  SynEditSearch, SynEditMiscClasses, SynEditHighlighter;
+  uPSComponent, uPSDebugger, SynEditHighlighter;
 
 type
   Teditor = class(TForm)
@@ -52,8 +51,6 @@ type
     IFPS3CE_StdCtrls1: TPSImport_StdCtrls;
     IFPS3CE_ComObj1: TPSImport_ComObj;
     Pause1: TMenuItem;
-    SynEditSearch: TSynEditSearch;
-    SynEditRegexSearch: TSynEditRegexSearch;
     Search1: TMenuItem;
     Find1: TMenuItem;
     Replace1: TMenuItem;
@@ -120,7 +117,7 @@ uses
   uFrmGotoLine,
   dlgSearchText, dlgReplaceText, dlgConfirmReplace;
 
-{$R *.dfm}
+{$R *.lfm}
 
 const
   isRunningOrPaused = [isRunning, isPaused];
@@ -170,13 +167,13 @@ begin
     Include(Options, ssoSelectedOnly);
   if gbSearchWholeWords then
     Include(Options, ssoWholeWord);
-  if gbSearchRegex then
-    ed.SearchEngine := SynEditRegexSearch
-  else
-    ed.SearchEngine := SynEditSearch;
+  //if gbSearchRegex then
+  //  ed.SearchEngine := SynEditRegexSearch
+  //else
+  //  ed.SearchEngine := SynEditSearch;
   if ed.SearchReplace(gsSearchText, gsReplaceText, Options) = 0 then
   begin
-    MessageBeep(MB_ICONASTERISK);
+    // MessageBeep(MB_ICONASTERISK);
     Statusbar.SimpleText := STR_TEXT_NOTFOUND;
     if ssoBackwards in Options then
       ed.BlockEnd := ed.BlockBegin
@@ -208,7 +205,7 @@ begin
     SearchText := gsSearchText;
     if gbSearchTextAtCaret then begin
       // if something is selected search for that text
-      if ed.SelAvail and (ed.BlockBegin.Line = ed.BlockEnd.Line) //Birb (fix at SynEdit's SearchReplaceDemo)
+      if ed.SelAvail and (ed.BlockBegin.Y = ed.BlockEnd.Y) //Birb (fix at SynEdit's SearchReplaceDemo)
       then
         SearchText := ed.SelText
       else
@@ -486,12 +483,12 @@ begin
   if ed.Modified then
   begin
     case MessageDlg(STR_NOTSAVED, mtConfirmation, mbYesNoCancel, 0) of
-      idYes:
+      mrYes:
         begin
           Save1Click(nil);
           Result := aFile <> '';
         end;
-      IDNO: Result := True;
+      mrNO: Result := True;
       else
         Result := False;
     end;
@@ -565,7 +562,7 @@ begin
     Ce.MainFileName := STR_UNNAMED;
 end;
 
-function GetErrorRowCol(const inStr: string): TBufferCoord;
+function GetErrorRowCol(const inStr: string): TPoint;
 var
   Row:string;
   Col:string;
@@ -578,13 +575,13 @@ begin
   begin
     Row := Copy(inStr, p1+1,p2-p1-1);
     Col := Copy(inStr, p2+1,p3-p2-1);
-    Result.Char := StrToInt(Trim(Col));
-    Result.Line := StrToInt(Trim(Row));
+    Result.X := StrToInt(Trim(Col));
+    Result.Y := StrToInt(Trim(Row));
   end
   else
   begin
-    Result.Char := 1;
-    Result.Line := 1;
+    Result.Y := 1;
+    Result.Y := 1;
   end
 end;
 

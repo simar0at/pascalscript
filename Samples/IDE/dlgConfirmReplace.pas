@@ -36,12 +36,11 @@ Known Issues:
 
 unit dlgConfirmReplace;
 
-{$I SynEdit.inc}
+{$MODE Delphi}
 
 interface
 
-uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+uses LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls;
 
 type
@@ -64,7 +63,7 @@ var
 
 implementation
 
-{$R *.DFM}
+{$R *.lfm}
 
 resourcestring
   SAskReplaceText = 'Replace this occurence of "%s"?';
@@ -73,7 +72,7 @@ resourcestring
 
 procedure TConfirmReplaceDialog.FormCreate(Sender: TObject);
 begin
-  Image1.Picture.Icon.Handle := LoadIcon(0, IDI_QUESTION);
+  // Image1.Picture.Icon.Handle := LoadIcon(0, IDI_QUESTION);
 end;
 
 procedure TConfirmReplaceDialog.FormDestroy(Sender: TObject);

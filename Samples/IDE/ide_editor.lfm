@@ -1,112 +1,161 @@
 object editor: Teditor
   Left = 350
+  Height = 480
   Top = 222
   Width = 696
-  Height = 480
   Caption = 'Editor'
+  ClientHeight = 480
+  ClientWidth = 696
   Color = clBtnFace
-  Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -14
   Font.Name = 'MS Sans Serif'
-  Font.Style = []
   Menu = MainMenu1
-  OldCreateOrder = False
   Position = poDesktopCenter
-  PixelsPerInch = 120
-  TextHeight = 16
   object Splitter1: TSplitter
-    Left = 0
-    Top = 311
-    Width = 688
-    Height = 4
     Cursor = crVSplit
-    Align = alBottom
-  end
-  object ed: TSynEdit
     Left = 0
+    Height = 4
+    Top = 374
+    Width = 696
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  inline ed: TSynEdit
+    Left = 0
+    Height = 374
     Top = 0
-    Width = 688
-    Height = 311
+    Width = 696
     Align = alClient
-    Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
     Font.Name = 'Courier New'
-    Font.Style = []
+    Font.Pitch = fpFixed
+    Font.Quality = fqNonAntialiased
+    ParentColor = False
+    ParentFont = False
     PopupMenu = PopupMenu1
     TabOrder = 0
-    Gutter.AutoSize = True
-    Gutter.Font.Charset = DEFAULT_CHARSET
-    Gutter.Font.Color = clWindowText
-    Gutter.Font.Height = -11
-    Gutter.Font.Name = 'Terminal'
-    Gutter.Font.Style = []
-    Gutter.ShowLineNumbers = True
+    Gutter.Width = 61
+    Gutter.MouseActions = <>
+    RightGutter.Width = 0
+    RightGutter.MouseActions = <>
     Highlighter = pashighlighter
+    Keystrokes = <>
+    MouseActions = <>
+    MouseTextActions = <>
+    MouseSelActions = <>
     Lines.Strings = (
       'Program test;'
       'begin'
-      'end.')
-    Options = [eoAutoIndent, eoDragDropEditing, eoDropFiles, eoGroupUndo, eoScrollPastEol, eoShowScrollHint, eoSmartTabDelete, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
+      'end.'
+    )
+    Options = [eoAutoIndent, eoGroupUndo, eoScrollPastEol, eoShowScrollHint, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces, eoDragDropEditing]
+    MouseOptions = [emDragDropEditing]
+    VisibleSpecialChars = [vscSpace, vscTabAtLast]
+    SelectedColor.BackPriority = 50
+    SelectedColor.ForePriority = 50
+    SelectedColor.FramePriority = 50
+    SelectedColor.BoldPriority = 50
+    SelectedColor.ItalicPriority = 50
+    SelectedColor.UnderlinePriority = 50
+    SelectedColor.StrikeOutPriority = 50
+    BracketHighlightStyle = sbhsBoth
+    BracketMatchColor.Background = clNone
+    BracketMatchColor.Foreground = clNone
+    BracketMatchColor.Style = [fsBold]
+    FoldedCodeColor.Background = clNone
+    FoldedCodeColor.Foreground = clGray
+    FoldedCodeColor.FrameColor = clGray
+    MouseLinkColor.Background = clNone
+    MouseLinkColor.Foreground = clBlue
+    LineHighlightColor.Background = clNone
+    LineHighlightColor.Foreground = clNone
     OnDropFiles = edDropFiles
     OnSpecialLineColors = edSpecialLineColors
     OnStatusChange = edStatusChange
-    RemovedKeystrokes = <
-      item
-        Command = ecContextHelp
-        ShortCut = 112
-      end>
-    AddedKeystrokes = <
-      item
-        Command = ecContextHelp
-        ShortCut = 16496
-      end>
+    inline SynLeftGutterPartList1: TSynGutterPartList
+      object SynGutterMarks1: TSynGutterMarks
+        Width = 24
+        MouseActions = <>
+      end
+      object SynGutterLineNumber1: TSynGutterLineNumber
+        Width = 21
+        MouseActions = <>
+        MarkupInfo.Background = clBtnFace
+        MarkupInfo.Foreground = clNone
+        DigitCount = 2
+        ShowOnlyLineNumbersMultiplesOf = 1
+        ZeroStart = False
+        LeadingZeros = False
+      end
+      object SynGutterChanges1: TSynGutterChanges
+        Width = 4
+        MouseActions = <>
+        ModifiedColor = 59900
+        SavedColor = clGreen
+      end
+      object SynGutterSeparator1: TSynGutterSeparator
+        Width = 2
+        MouseActions = <>
+        MarkupInfo.Background = clWhite
+        MarkupInfo.Foreground = clGray
+      end
+      object SynGutterCodeFolding1: TSynGutterCodeFolding
+        MouseActions = <>
+        MarkupInfo.Background = clNone
+        MarkupInfo.Foreground = clGray
+        MouseActionsExpanded = <>
+        MouseActionsCollapsed = <>
+      end
+    end
   end
   object messages: TListBox
     Left = 0
-    Top = 315
-    Width = 688
     Height = 81
+    Top = 378
+    Width = 696
     Align = alBottom
-    ItemHeight = 16
-    TabOrder = 1
+    ItemHeight = 0
     OnDblClick = messagesDblClick
+    TabOrder = 1
+    TopIndex = -1
   end
   object StatusBar: TStatusBar
     Left = 0
-    Top = 396
-    Width = 688
-    Height = 19
-    Panels = <
+    Height = 21
+    Top = 459
+    Width = 696
+    Panels = <    
       item
         Width = 50
       end>
+    SimplePanel = False
   end
   object ce: TPSScriptDebugger
     CompilerOptions = []
     OnCompile = ceCompile
     OnExecute = ceExecute
     OnAfterExecute = ceAfterExecute
-    Plugins = <
+    Plugins = <    
       item
         Plugin = IFPS3CE_DateUtils1
-      end
+      end    
       item
         Plugin = IFPS3CE_Std1
-      end
+      end    
       item
         Plugin = IFPS3CE_Controls1
-      end
+      end    
       item
         Plugin = IFPS3CE_StdCtrls1
-      end
+      end    
       item
         Plugin = IFPS3CE_Forms1
-      end
+      end    
       item
         Plugin = IFPS3DllPlugin1
-      end
+      end    
       item
         Plugin = IFPS3CE_ComObj1
       end>
@@ -124,6 +173,10 @@ object editor: Teditor
     Top = 112
   end
   object pashighlighter: TSynPasSyn
+    Enabled = False
+    CompilerMode = pcmDelphi
+    NestedComments = False
+    TypeHelpers = True
     Left = 592
     Top = 64
   end
@@ -239,14 +292,14 @@ object editor: Teditor
     end
   end
   object SaveDialog1: TSaveDialog
-    DefaultExt = 'ROPS'
+    DefaultExt = '.ROPS'
     Filter = 'ROPS Files|*.ROPS'
     Options = [ofHideReadOnly, ofPathMustExist, ofEnableSizing]
     Left = 200
     Top = 104
   end
   object OpenDialog1: TOpenDialog
-    DefaultExt = 'ROPS'
+    DefaultExt = '.ROPS'
     Filter = 'ROPS Files|*.ROPS'
     Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Left = 168
@@ -284,13 +337,5 @@ object editor: Teditor
   object IFPS3CE_ComObj1: TPSImport_ComObj
     Left = 328
     Top = 200
-  end
-  object SynEditSearch: TSynEditSearch
-    Left = 136
-    Top = 216
-  end
-  object SynEditRegexSearch: TSynEditRegexSearch
-    Left = 168
-    Top = 216
   end
 end

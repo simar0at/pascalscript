@@ -36,12 +36,13 @@ Known Issues:
 
 unit dlgReplaceText;
 
-{$I SynEdit.inc}
+{$MODE Delphi}
+
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   dlgSearchText, StdCtrls, ExtCtrls;
 
 type
@@ -62,7 +63,7 @@ type
 
 implementation
 
-{$R *.DFM}
+{$R *.lfm}
 
 { TTextReplaceDialog }
 

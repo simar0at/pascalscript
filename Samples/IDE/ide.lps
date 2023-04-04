@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Debug"/>
+    <Units>
+      <Unit>
+        <Filename Value="ide.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ide_editor.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="editor"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <CursorPos X="31" Y="6"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="ide_debugoutput.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="debugoutput"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="uFrmGotoLine.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmGotoLine"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="20"/>
+        <CursorPos X="52" Y="60"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dlgSearchText.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TextSearchDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="25"/>
+        <CursorPos X="31" Y="44"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dlgConfirmReplace.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="ConfirmReplaceDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="6"/>
+        <TopLine Value="59"/>
+        <CursorPos X="6" Y="75"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="dlgReplaceText.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="TextReplaceDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="7"/>
+        <TopLine Value="25"/>
+        <CursorPos X="3" Y="45"/>
+        <UsageCount Value="21"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/share/fpcsrc/rtl/wince/windows.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="41"/>
+        <CursorPos X="5" Y="44"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../Source/uPSR_dll.pas"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="140"/>
+        <CursorPos X="7" Y="156"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../synedit/synedittypes.pp"/>
+        <UnitName Value="SynEditTypes"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="56"/>
+        <CursorPos X="17" Y="66"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/lib64/lazarus/docs/xml/lcl/dialogs/trymessagedlg.pas"/>
+        <EditorIndex Value="2"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="25">
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgSearchText.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgReplaceText.pas"/>
+        <Caret Line="5" Column="73"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="8" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="../../Source/uPSR_dll.pas"/>
+        <Caret Line="106" Column="43" TopLine="90"/>
+      </Position>
+      <Position>
+        <Filename Value="../../Source/uPSR_dll.pas"/>
+        <Caret Line="137" Column="11" TopLine="121"/>
+      </Position>
+      <Position>
+        <Filename Value="../../Source/uPSR_dll.pas"/>
+        <Caret Line="156" Column="7" TopLine="140"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="8" Column="3"/>
+      </Position>
+      <Position>
+        <Filename Value="uFrmGotoLine.pas"/>
+        <Caret Line="9" Column="30" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="uFrmGotoLine.pas"/>
+        <Caret Line="21" Column="31" TopLine="5"/>
+      </Position>
+      <Position>
+        <Filename Value="uFrmGotoLine.pas"/>
+        <Caret Line="47" Column="11" TopLine="38"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgSearchText.pas"/>
+        <Caret Line="41" Column="12" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgSearchText.pas"/>
+        <Caret Line="39" Column="15" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgSearchText.pas"/>
+        <Caret Line="44" Column="31" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgReplaceText.pas"/>
+        <Caret Line="45" Column="3" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgConfirmReplace.pas"/>
+        <Caret Line="43" Column="35" TopLine="25"/>
+      </Position>
+      <Position>
+        <Filename Value="dlgConfirmReplace.pas"/>
+        <Caret Line="75" Column="6" TopLine="59"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="170" Column="57" TopLine="156"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="208" Column="58" TopLine="195"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="491" Column="9" TopLine="470"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="579" Column="13" TopLine="549"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="584" Column="13" TopLine="574"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="565" Column="53" TopLine="562"/>
+      </Position>
+      <Position>
+        <Filename Value="ide_editor.pas"/>
+        <Caret Line="605" Column="26" TopLine="583"/>
+      </Position>
+      <Position>
+        <Filename Value="uFrmGotoLine.pas"/>
+        <Caret Line="21" Column="30" TopLine="17"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>

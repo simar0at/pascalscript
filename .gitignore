@@ -3,3 +3,5 @@ __history
 *.local
 *.skincfg
 *.identcache
+**/backup
+**/lib

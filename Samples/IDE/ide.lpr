@@ -1,7 +1,9 @@
 program ide;
 
+{$MODE Delphi}
+
 uses
-  Forms,
+  Forms, Interfaces,
   ide_editor in 'ide_editor.pas' {editor},
   ide_debugoutput in 'ide_debugoutput.pas' {debugoutput},
   uFrmGotoLine in 'uFrmGotoLine.pas' {frmGotoLine},

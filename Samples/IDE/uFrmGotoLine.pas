@@ -1,9 +1,11 @@
 unit uFrmGotoLine;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, SynEditTypes;
 
 type
@@ -16,8 +18,8 @@ type
     lblCharNumber: TLabel;
     procedure FormShow(Sender: TObject);
   private
-    function GetCaret: TBufferCoord;
-    procedure SetCaret(const Value: TBufferCoord);
+    function GetCaret: TPoint;
+    procedure SetCaret(const Value: TPoint);
     procedure SetChar(const Value: Integer);
     procedure SetLine(const Value: Integer);
     function GetChar: Integer;
@@ -27,7 +29,7 @@ type
     { Public declarations }
     property Char : Integer read GetChar write SetChar;
     property Line : Integer read GetLine write setLine;
-    property CaretXY:TBufferCoord read GetCaret write SetCaret;
+    property CaretXY:TPoint read GetCaret write SetCaret;
   end;
 
 var
@@ -35,14 +37,14 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R *.lfm}
 
 { TfrmGotoLine }
 
-function TfrmGotoLine.GetCaret: TBufferCoord;
+function TfrmGotoLine.GetCaret: TPoint;
 begin
-  Result.Char := StrToInt(edtCharNumber.Text);
-  Result.Line := StrToInt(edtLineNumber.Text);
+  Result.X := StrToInt(edtCharNumber.Text);
+  Result.Y := StrToInt(edtLineNumber.Text);
 end;
 
 function TfrmGotoLine.GetChar: Integer;
@@ -55,10 +57,10 @@ begin
   Result := StrToInt(edtLineNumber.Text)
 end;
 
-procedure TfrmGotoLine.SetCaret(const Value: TBufferCoord);
+procedure TfrmGotoLine.SetCaret(const Value: TPoint);
 begin
-  edtCharNumber.Text := IntToStr(Value.Char);
-  edtLineNumber.Text := IntToStr(Value.Line);
+  edtCharNumber.Text := IntToStr(Value.X);
+  edtLineNumber.Text := IntToStr(Value.Y);
 end;
 
 procedure TfrmGotoLine.SetChar(const Value: Integer);
