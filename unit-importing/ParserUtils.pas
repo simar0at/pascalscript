@@ -1,5 +1,7 @@
 unit ParserUtils;
 
+{$MODE Delphi}
+
 interface
 uses uPSUtils, SysUtils, Classes;
 

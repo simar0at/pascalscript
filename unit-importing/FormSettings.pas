@@ -1,9 +1,11 @@
 unit FormSettings;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   StdCtrls, ExtCtrls;
 
 type
@@ -33,7 +35,7 @@ implementation
 
 uses FileCtrl;
 
-{$R *.DFM}
+{$R *.lfm}
 
 procedure TfrmSettings.btnOutPutDirClick(Sender: TObject);
 var

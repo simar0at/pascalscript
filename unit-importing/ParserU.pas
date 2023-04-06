@@ -9,6 +9,9 @@
 }
 
 unit ParserU;
+
+{$MODE Delphi}
+
 {version: 20041219}
 
 interface
@@ -1320,7 +1323,9 @@ var
   Index: integer;
   CheckSemiColon: boolean;
   Proc: TProcList;
+  _Options: TProcDeclOptions;
 begin
+  _Options := Options;
   Result := [];
   if IfMatch(CSTII_function) then
   begin
@@ -1606,7 +1611,7 @@ begin
                     If (IsConstructor in Result) then
                       Add('Begin Result := '+OwnerClass+'.' + OldProcName+ParamStr+'; END;')
                     else
-                    If (IsMethod in Options) then
+                    If (IsMethod in _Options) then
                       Add('Begin '+S+'Self.' + OldProcName+ParamStr+'; END;')
                     else
                       Add('Begin '+s+UnitName + '.' + OldProcName +ParamStr+ '; END;');

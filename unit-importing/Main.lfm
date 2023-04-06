@@ -1,0 +1,363 @@
+object frmMain: TfrmMain
+  Left = 269
+  Height = 551
+  Top = 246
+  Width = 696
+  Caption = 'Import Files'
+  ClientHeight = 551
+  ClientWidth = 696
+  Color = clBtnFace
+  DesignTimePPI = 120
+  Font.Color = clWindowText
+  Font.Height = -14
+  Font.Name = 'MS Sans Serif'
+  Menu = mnuMain
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poDefault
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 4
+    Top = 437
+    Width = 696
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object lboMessages: TListBox
+    Left = 0
+    Height = 81
+    Top = 441
+    Width = 696
+    Align = alBottom
+    ItemHeight = 0
+    OnDblClick = lboMessagesDblClick
+    TabOrder = 0
+  end
+  object TabControl1: TTabControl
+    Left = 0
+    Height = 408
+    Top = 29
+    Width = 696
+    OnChange = TabControl1Change
+    OnChanging = TabControl1Changing
+    Style = tsFlatButtons
+    TabIndex = 0
+    Tabs.Strings = (
+      'Main'
+    )
+    Align = alClient
+    TabOrder = 1
+    inline Editor: TSynEdit
+      Left = 2
+      Height = 382
+      Top = 24
+      Width = 692
+      Align = alClient
+      Font.Color = clWindowText
+      Font.Height = -17
+      Font.Name = 'Courier New'
+      Font.Pitch = fpFixed
+      Font.Quality = fqNonAntialiased
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+      OnClick = EditorClick
+      OnKeyDown = EditorKeyDown
+      OnKeyUp = EditorKeyUp
+      Gutter.Width = 67
+      Gutter.MouseActions = <>
+      RightGutter.Width = 0
+      RightGutter.MouseActions = <>
+      Highlighter = pashighlighter
+      Keystrokes = <>
+      MouseActions = <>
+      MouseTextActions = <>
+      MouseSelActions = <>
+      Lines.Strings = (
+        '//drag ''n'' drop a file here'
+      )
+      Options = [eoAutoIndent, eoGroupUndo, eoScrollPastEol, eoShowScrollHint, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces, eoDragDropEditing]
+      MouseOptions = [emDragDropEditing]
+      VisibleSpecialChars = [vscSpace, vscTabAtLast]
+      SelectedColor.BackPriority = 50
+      SelectedColor.ForePriority = 50
+      SelectedColor.FramePriority = 50
+      SelectedColor.BoldPriority = 50
+      SelectedColor.ItalicPriority = 50
+      SelectedColor.UnderlinePriority = 50
+      SelectedColor.StrikeOutPriority = 50
+      BracketHighlightStyle = sbhsBoth
+      BracketMatchColor.Background = clNone
+      BracketMatchColor.Foreground = clNone
+      BracketMatchColor.Style = [fsBold]
+      FoldedCodeColor.Background = clNone
+      FoldedCodeColor.Foreground = clGray
+      FoldedCodeColor.FrameColor = clGray
+      MouseLinkColor.Background = clNone
+      MouseLinkColor.Foreground = clBlue
+      LineHighlightColor.Background = clNone
+      LineHighlightColor.Foreground = clNone
+      OnChange = EditorChange
+      OnDropFiles = EditorDropFiles
+      inline SynLeftGutterPartList1: TSynGutterPartList
+        object SynGutterMarks1: TSynGutterMarks
+          Width = 24
+          MouseActions = <>
+        end
+        object SynGutterLineNumber1: TSynGutterLineNumber
+          Width = 27
+          MouseActions = <>
+          MarkupInfo.Background = clBtnFace
+          MarkupInfo.Foreground = clNone
+          DigitCount = 2
+          ShowOnlyLineNumbersMultiplesOf = 1
+          ZeroStart = False
+          LeadingZeros = False
+        end
+        object SynGutterChanges1: TSynGutterChanges
+          Width = 4
+          MouseActions = <>
+          ModifiedColor = 59900
+          SavedColor = clGreen
+        end
+        object SynGutterSeparator1: TSynGutterSeparator
+          Width = 2
+          MouseActions = <>
+          MarkupInfo.Background = clWhite
+          MarkupInfo.Foreground = clGray
+        end
+        object SynGutterCodeFolding1: TSynGutterCodeFolding
+          MouseActions = <>
+          MarkupInfo.Background = clNone
+          MarkupInfo.Foreground = clGray
+          MouseActionsExpanded = <>
+          MouseActionsCollapsed = <>
+        end
+      end
+    end
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 29
+    Top = 0
+    Width = 696
+    ButtonHeight = 24
+    ButtonWidth = 25
+    Caption = 'ToolBar1'
+    EdgeBorders = [ebBottom]
+    Images = ImageList1
+    TabOrder = 2
+    object ToolButton1: TToolButton
+      Tag = 100
+      Left = 1
+      Top = 0
+      Caption = '&Open'
+      ImageIndex = 0
+      OnClick = AnyCommand
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object ToolButton2: TToolButton
+      Tag = 101
+      Left = 26
+      Top = 0
+      Caption = '&Save'
+      ImageIndex = 1
+      OnClick = AnyCommand
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object ToolButton3: TToolButton
+      Tag = 104
+      Left = 51
+      Top = 0
+      Caption = 'Settings ...'
+      ImageIndex = 3
+      OnClick = mnuSettingsClick
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object ToolButton4: TToolButton
+      Left = 76
+      Height = 24
+      Top = 0
+      Caption = 'ToolButton4'
+      ImageIndex = 3
+      Style = tbsSeparator
+    end
+    object ToolButton7: TToolButton
+      Tag = 104
+      Left = 84
+      Top = 0
+      Caption = '&Convert'
+      ImageIndex = 4
+      OnClick = AnyCommand
+      ParentShowHint = False
+      ShowHint = True
+    end
+    object ToolButton8: TToolButton
+      Left = 109
+      Height = 24
+      Top = 0
+      Caption = 'ToolButton8'
+      ImageIndex = 5
+      Style = tbsSeparator
+    end
+    object tlbFind: TToolButton
+      Left = 117
+      Top = 0
+      Caption = '&Find...'
+      ImageIndex = 5
+      MenuItem = mnuFind
+    end
+    object tlbFindNext: TToolButton
+      Left = 142
+      Top = 0
+      Caption = 'Find &Next'
+      ImageIndex = 6
+      MenuItem = mnuFindNext
+    end
+    object ToolButton6: TToolButton
+      Left = 167
+      Height = 24
+      Top = 0
+      Caption = 'ToolButton6'
+      ImageIndex = 4
+      Style = tbsSeparator
+    end
+  end
+  object stbMain: TStatusBar
+    Left = 0
+    Height = 29
+    Top = 522
+    Width = 696
+    Panels = <    
+      item
+        Text = 'Current Row : 99999999 Col : 99999'
+        Width = 180
+      end>
+    SimplePanel = False
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '.ifps3'
+    Filter = 'Pas Files|*.pas|All files|*.*'
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Left = 428
+  end
+  object pashighlighter: TSynPasSyn
+    Enabled = False
+    CompilerMode = pcmDelphi
+    NestedComments = False
+    TypeHelpers = True
+    Left = 600
+  end
+  object mnuMain: TMainMenu
+    Images = ImageList1
+    Left = 520
+    object File1: TMenuItem
+      Caption = '&File'
+      object mnuOpen: TMenuItem
+        Caption = '&Open...'
+        ImageIndex = 0
+        ShortCut = 16463
+        OnClick = AnyCommand
+      end
+      object mnuSave: TMenuItem
+        Caption = '&Save'
+        ImageIndex = 1
+        ShortCut = 16467
+        OnClick = AnyCommand
+      end
+      object mnuSaveAll: TMenuItem
+        Caption = 'Save All'
+        ImageIndex = 2
+        ShortCut = 49235
+        OnClick = AnyCommand
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object mnuRecent: TMenuItem
+        Caption = 'Recent'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object mnuSettings: TMenuItem
+        Caption = 'Settings ...'
+        ImageIndex = 3
+        OnClick = mnuSettingsClick
+      end
+      object N4: TMenuItem
+        Caption = '-'
+      end
+      object mnuExit: TMenuItem
+        Caption = '&Exit'
+        OnClick = AnyCommand
+      end
+    end
+    object Convert1: TMenuItem
+      Caption = '&Convert'
+      object mnuConvert: TMenuItem
+        Caption = '&Convert'
+        ImageIndex = 4
+        ShortCut = 120
+        OnClick = AnyCommand
+      end
+    end
+    object Edit1: TMenuItem
+      Caption = 'Edit'
+      object mnuFind: TMenuItem
+        Caption = '&Find...'
+        ImageIndex = 5
+        ShortCut = 16454
+        OnClick = mnuFindClick
+      end
+      object mnuFindNext: TMenuItem
+        Caption = 'Find &Next'
+        ImageIndex = 6
+        ShortCut = 114
+        OnClick = mnuFindNextClick
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object GoTo1: TMenuItem
+        Caption = '&Go To...'
+        ShortCut = 16455
+        OnClick = GoTo1Click
+      end
+    end
+  end
+  object ImageList1: TImageList
+    Height = 18
+    Width = 18
+    Left = 475
+    Bitmap = {
+      4C7A0800000012000000120000001A0200000000000078DAED990DB283200C84
+      393A47EBCD78A31627C45D48107FE61566326DADF9081016D0105E5992C3EA9C
+      94D6FB5091FFC718D37FE038FB69E310BF0A9B73B4118EE0B9E2894BDF94FE28
+      2EC9D82E6CBF03EB7BD5463327C7238DB68D98239EB52CB9A1AD231E9A5BDE78
+      4ECCE159C669E5397F91D73DFEE93B6F8B4F1B6BAF1F326C2CEADB917BB47E8F
+      1E163AA7E271E82164157D0EBE233D04F5A4CEF97EE88F460C50575F16CF8175
+      229E838E0ED8CBFCB25EA68738C7BD8077EFC975D53CE6062D4C4FE8EA152C4F
+      BF56EADFF743AD58E4BE291CFD4372B44BD4C9FCDB7D53B202D233733F133D4C
+      F67E0E688D71FAB7F4F0A93DCF2505EDCB1BE738E8CF4A8BB7DCF3F97C5693DF
+      992156AEDFE29B6DF9ADC7439F4DF2BC00F5172659643D0F9905EA803942D66D
+      A6EB74ED406391DB24FBAD959BD93F8F532E5E4E6DAC3C1CB43F629C5A8EA37C
+      65EDAAECA72807E58BCEA96CE8309B397A9D909F6CEECA6BBA3FD49AD3DCDBC9
+      F116E38358A62239249EAE676FBDF18CD453D69F165D2DFC23B1066F6744A371
+      969D51C6466329E68D2FA68221EFB5B02C1CCD3CFC6FE0483F7DDD1BCFD31C3D
+      5EAC9D88E3CEC17A2E9ECEC3C1F362C83C1DA91B3FF2BC3019AF5BCE0696EB57
+      C6C3D65BF7991D3CAFA95D3FFBEE8ABF4FA9C4527BB6753327F5709CE3D5CAB1
+      E633B83B388E73C47C0732756CEAD8D4B1A96363DF7DB2EF7772A6264E4D9C9A
+      3835F12ADD18A953AFD0BB3FB8A55EB4
+    }
+  end
+  object DlgTextSearch: TFindDialog
+    Options = [frDown, frReplace, frReplaceAll, frWholeWord, frShowHelp]
+    OnFind = DlgTextSearchFind
+    Left = 560
+  end
+end

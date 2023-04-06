@@ -1,9 +1,11 @@
 unit Main;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms,
   Dialogs, SynEditHighlighter, SynHighlighterPas, SynEdit, Menus, ExtCtrls,
   StdCtrls, SynEditMiscClasses, inifiles, ComCtrls, ImgList, ToolWin,
   SynEditSearch, SynEditTypes;
@@ -47,7 +49,6 @@ type
     mnuRecent: TMenuItem;
     N3: TMenuItem;
     ToolButton6: TToolButton;
-    SynEditSearch1: TSynEditSearch;
 
     procedure EditorDropFiles(Sender: TObject; X, Y: Integer;   AFiles: TStrings);
 
@@ -87,7 +88,7 @@ type
     FSearchText, FReplaceText : string;
     procedure Convert;
     procedure DoSearchReplaceText(AReplace: Boolean; ABackwards: boolean);
-    function GetErrorXY(const inStr:string):TBufferCoord;
+    function GetErrorXY(const inStr:string):TPoint;
     procedure ReadLastUsedList;
     procedure SaveLastUsedList;
     procedure BuildLastUsedMenu(aMenuItem:TMenuItem);
@@ -110,7 +111,7 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R *.lfm}
 
 uses
   ParserU, FormSettings, StrUtils, UFrmGotoLine;
@@ -527,7 +528,7 @@ procedure TfrmMain.DoSearchReplaceText(AReplace, ABackwards: boolean);
 begin
   if Editor.SearchReplace(FSearchText, FReplaceText, FSearchOptions) = 0 then
   begin
-    MessageBeep(MB_ICONASTERISK);
+    //MessageBeep(MB_ICONASTERISK);
     if ssoBackwards in FSearchOptions then
       Editor.BlockEnd := Editor.BlockBegin
     else
@@ -551,12 +552,12 @@ procedure TfrmMain.lboMessagesDblClick(Sender: TObject);
 begin
   if LeftStr(lboMessages.Items[lboMessages.ItemIndex],10)= 'Exception:' then
   begin
-    Editor.CaretXY := GetErrorXY(lboMessages.Items[lboMessages.ItemIndex]);
+    Editor.LogicalCaretXY := GetErrorXY(lboMessages.Items[lboMessages.ItemIndex]);
   end;
   Editor.SetFocus;
 end;
 
-function TfrmMain.GetErrorXY(const inStr: string): TBufferCoord;
+function TfrmMain.GetErrorXY(const inStr: string): TPoint;
 var
   RowCol:string;
   Row:string;
@@ -566,8 +567,8 @@ begin
   Col := Copy(RowCol,1,Pos(':',RowCol) -1);
   RowCol := Copy(RowCol,Pos(':',RowCol)+ 1, MaxInt);
   Row := Copy(RowCol,1,Pos(':',RowCol)-1);
-  Result.Char := StrToInt(Trim(ReverseString(Col)));
-  Result.Line := StrToInt(Trim(ReverseString(Row)));
+  Result.X := StrToInt(Trim(ReverseString(Col)));
+  Result.Y := StrToInt(Trim(ReverseString(Row)));
 end;
 
 procedure TfrmMain.GoTo1Click(Sender: TObject);

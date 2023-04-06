@@ -85,7 +85,7 @@
 {      to handle case insensitive search in languages with special chars;    }
 {      some efforts to increase speed                                        }
 {      * new web and e-mail address *                                        }
-{ 2.01 implemented modifications/suggestions from Gyula MÈsz·ros,            }
+{ 2.01 implemented modifications/suggestions from Gyula M√©sz√°ros,            }
 {      Budapest, Hungary - 100263.1465@compuserve.com                        }
 {procedure TIniFile.ReadSections(aStrings: TStrings);                        }
 {    - The extra 16K file buffer is removeable                               }
@@ -163,6 +163,8 @@
 {       tempStringList.Free;                                                 }
 { -------------------------------------------------------------------------- }
 unit BigIni;
+
+{$MODE Delphi}
 
 // activate the following line, if you want to access lines longer than 255 chars:
 { $ DEFINE UseShortStrings}
@@ -328,7 +330,7 @@ It's a descendant of TStringList with "enhanced" IndexOf function (and others)
 
 { -------------------------------------------------------------------------- }
 implementation
-uses Windows, SysUtils;
+uses LCLIntf, LCLType, LMessages, SysUtils;
 { -------------------------------------------------------------------------- }
 
 {........................................................................... }
@@ -352,7 +354,7 @@ var
 begin
   if getLibraryName then aHandle := HInstance
                     else aHandle := 0;
-  SetString(Result, Buffer, GetModuleFileName(aHandle, Buffer, SizeOf(Buffer)));
+  Result := paramstr(0);
   { GetModuleFileName returns a result in uppercase letters only }
   { The following FindFirst construct returns the mixed case name }
   thePath      := ExtractFilePath(Result);
@@ -593,9 +595,7 @@ begin
     P := AnsiPos('=', s1);
     SetLength(s1,P-1);
     if (P <> 0) AND (
-    CompareString(LOCALE_USER_DEFAULT, NORM_IGNORECASE,
-      PChar(s1), -1,
-      PChar(s2), -1)
+    CompareText(s1, s2, loUserLocale)
       = 2) then Exit;
   end;
   Result := -1;
