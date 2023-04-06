@@ -1,0 +1,125 @@
+object MainForm: TMainForm
+  Left = 364
+  Height = 491
+  Top = 170
+  Width = 694
+  HelpType = htKeyword
+  HelpKeyword = 'T'
+  ClientHeight = 491
+  ClientWidth = 694
+  Color = clBtnFace
+  DesignTimePPI = 120
+  Font.Color = clWindowText
+  Font.Height = -14
+  Font.Name = 'Tahoma'
+  Menu = MainMenu1
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 4
+    Top = 292
+    Width = 694
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object Memo1: TMemo
+    Left = 0
+    Height = 292
+    Top = 0
+    Width = 694
+    Align = alClient
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Courier New'
+    OnChange = Memo1Change
+    ParentFont = False
+    ScrollBars = ssVertical
+    TabOrder = 0
+  end
+  object Memo2: TMemo
+    Left = 0
+    Height = 195
+    Top = 296
+    Width = 694
+    Align = alBottom
+    ReadOnly = True
+    ScrollBars = ssVertical
+    TabOrder = 1
+  end
+  object MainMenu1: TMainMenu
+    Left = 100
+    Top = 30
+    object File1: TMenuItem
+      Caption = '&File'
+      object New1: TMenuItem
+        Caption = '&New'
+        OnClick = New1Click
+      end
+      object Open1: TMenuItem
+        Caption = '&Open...'
+        OnClick = Open1Click
+      end
+      object Save1: TMenuItem
+        Caption = '&Save'
+        OnClick = Save1Click
+      end
+      object SaveAs1: TMenuItem
+        Caption = 'Save &As...'
+        OnClick = SaveAs1Click
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Exit1: TMenuItem
+        Caption = 'E&xit'
+        OnClick = Exit1Click
+      end
+    end
+    object Toosl1: TMenuItem
+      Caption = '&Script'
+      object Compile1: TMenuItem
+        Caption = '&Compile'
+        ShortCut = 120
+        OnClick = Compile1Click
+      end
+      object CompilewithTimer1: TMenuItem
+        Caption = 'Compile with &Timer'
+        OnClick = CompilewithTimer1Click
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object Stop1: TMenuItem
+        Caption = '&Stop'
+        ShortCut = 16497
+        OnClick = Stop1Click
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object CompileandDisassemble1: TMenuItem
+        Caption = 'Compile and &Disassemble'
+        OnClick = CompileandDisassemble1Click
+      end
+    end
+  end
+  object OpenDialog1: TOpenDialog
+    DefaultExt = '.rops'
+    FileName = '*.rops'
+    Filter = 'Pascal Script files (*.rops3)|*.rops;*.ifps3|All files (*.*)|*.*'
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist]
+    Left = 250
+    Top = 190
+  end
+  object SaveDialog1: TSaveDialog
+    DefaultExt = '.rops'
+    FileName = '*.rops'
+    Filter = 'Pascal Script files (*.rops3)|*.rops;*.ifps3|All files (*.*)|*.*'
+    Options = [ofHideReadOnly, ofPathMustExist]
+    Left = 290
+    Top = 190
+  end
+end

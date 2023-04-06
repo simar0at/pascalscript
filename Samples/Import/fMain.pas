@@ -1,13 +1,18 @@
 unit fMain;
 
+{$MODE Delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  LCLIntf, LCLType, LMessages, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ExtCtrls, StdCtrls, uPSCompiler, uPSRuntime, uPSDisassembly, uPSPreprocessor, uPSUtils,
   Menus, uPSC_comobj, uPSR_comobj;
 
 type
+
+  { TMainForm }
+
   TMainForm = class(TForm)
     Memo1: TMemo;
     Memo2: TMemo;
@@ -55,7 +60,7 @@ var
 implementation
 
 uses
-  uPSC_dll, uPSR_dll, uPSDebugger,
+  uPSDebugger,
   uPSR_std, uPSC_std, uPSR_stdctrls, uPSC_stdctrls,
   uPSR_forms, uPSC_forms,
 
@@ -67,7 +72,7 @@ uses
   uPSR_classes,
   fDwin;
 
-{$R *.DFM}
+{$R *.lfm}
 
 var
   Imp: TPSRuntimeClassImporter;
@@ -219,7 +224,7 @@ begin
     x1 := TPSPascalCompiler.Create;
     x1.OnExportCheck := MyExportCheck;
     x1.OnUses := MyOnUses;
-    x1.OnExternalProc := DllExternalProc;
+//    x1.OnExternalProc := DllExternalProc;
     x1.AllowNoEnd := true;
     if x1.Compile(s) then
     begin
@@ -236,7 +241,7 @@ begin
       x1.Free;
       x2 := TPSDebugExec.Create;
       try
-        RegisterDLLRuntime(x2);
+//        RegisterDLLRuntime(x2);
         RegisterClassLibraryRuntime(x2, Imp);
         RIRegister_ComObj(x2);
 
@@ -408,7 +413,7 @@ begin
     xpre.MainFile := Memo1.Text;
     xpre.PreProcess(xpre.MainFileName, s);
     x1 := TPSPascalCompiler.Create;
-    x1.OnExternalProc := DllExternalProc;
+//    x1.OnExternalProc := DllExternalProc;
     x1.OnUses := MyOnUses;
     if x1.Compile(s) then
     begin
@@ -443,21 +448,21 @@ procedure TMainForm.CompilewithTimer1Click(Sender: TObject);
 var
   Freq, Time1, Time2: Comp;
 begin
-  if not QueryPerformanceFrequency(TLargeInteger((@Freq)^)) then
-  begin
+  //if not QueryPerformanceFrequency(TLargeInteger((@Freq)^)) then
+  //begin
     ShowMessage('Your computer does not support Performance Timers!');
     exit;
-  end;
-  QueryPerformanceCounter(TLargeInteger((@Time1)^));
-  IgnoreRunline := True;
-  try
-    Compile1Click(nil);
-  except
-  end;
-  IgnoreRunline := False;
-  QueryPerformanceCounter(TLargeInteger((@Time2)^));
-  Memo2.Lines.Add('Time: ' + Sysutils.FloatToStr((Time2 - Time1) / Freq) +
-    ' sec');
+  //end;
+  //QueryPerformanceCounter(TLargeInteger((@Time1)^));
+  //IgnoreRunline := True;
+  //try
+  //  Compile1Click(nil);
+  //except
+  //end;
+  //IgnoreRunline := False;
+  //QueryPerformanceCounter(TLargeInteger((@Time2)^));
+  //Memo2.Lines.Add('Time: ' + Sysutils.FloatToStr((Time2 - Time1) / Freq) +
+  //  ' sec');
 end;
 
 initialization
