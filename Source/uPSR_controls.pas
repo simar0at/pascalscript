@@ -159,6 +159,7 @@ end;
 
 {$IFDEF DELPHI4UP}
 (* === run-time registration functions === *)
+{$IFNDEF FPC}
 (*----------------------------------------------------------------------------*)
 procedure TDragObjectMouseDeltaY_R(Self: TDragObject; var T: Double);
 begin T := Self.MouseDeltaY; end;
@@ -166,6 +167,7 @@ begin T := Self.MouseDeltaY; end;
 (*----------------------------------------------------------------------------*)
 procedure TDragObjectMouseDeltaX_R(Self: TDragObject; var T: Double);
 begin T := Self.MouseDeltaX; end;
+{$ENDIF}
 
 (*----------------------------------------------------------------------------*)
 procedure TDragObjectDragTarget_W(Self: TDragObject; const T: Pointer);
@@ -190,7 +192,7 @@ begin Self.DragPos := T; end;
 (*----------------------------------------------------------------------------*)
 procedure TDragObjectDragPos_R(Self: TDragObject; var T: TPoint);
 begin T := Self.DragPos; end;
-
+{$IFNDEF FPC}
 (*----------------------------------------------------------------------------*)
 procedure TDragObjectDragHandle_W(Self: TDragObject; const T: HWND);
 begin Self.DragHandle := T; end;
@@ -207,6 +209,7 @@ begin Self.Cancelling := T; end;
 procedure TDragObjectCancelling_R(Self: TDragObject; var T: Boolean);
 begin T := Self.Cancelling; end;
 {$ENDIF}
+{$ENDIF}
 (*----------------------------------------------------------------------------*)
 procedure RIRegister_TDragObject(CL: TPSRuntimeClassImporter);
 begin
@@ -214,7 +217,9 @@ begin
   begin
 {$IFNDEF PS_MINIVCL}
 {$IFDEF DELPHI4UP}
+{$IFNDEF FPC}
     RegisterVirtualMethod(@TDragObject.Assign, 'Assign');
+{$ENDIF}
 {$ENDIF}
 {$IFNDEF FPC}
     RegisterVirtualMethod(@TDragObject.GetName, 'GetName');
@@ -223,13 +228,17 @@ begin
     RegisterVirtualMethod(@TDragObject.HideDragImage, 'HideDragImage');
     RegisterVirtualMethod(@TDragObject.ShowDragImage, 'ShowDragImage');
 {$IFDEF DELPHI4UP}
+{$IFNDEF FPC}
     RegisterPropertyHelper(@TDragObjectCancelling_R,@TDragObjectCancelling_W,'Cancelling');
     RegisterPropertyHelper(@TDragObjectDragHandle_R,@TDragObjectDragHandle_W,'DragHandle');
+{$ENDIF}
     RegisterPropertyHelper(@TDragObjectDragPos_R,@TDragObjectDragPos_W,'DragPos');
     RegisterPropertyHelper(@TDragObjectDragTargetPos_R,@TDragObjectDragTargetPos_W,'DragTargetPos');
     RegisterPropertyHelper(@TDragObjectDragTarget_R,@TDragObjectDragTarget_W,'DragTarget');
+{$IFNDEF FPC}
     RegisterPropertyHelper(@TDragObjectMouseDeltaX_R,nil,'MouseDeltaX');
     RegisterPropertyHelper(@TDragObjectMouseDeltaY_R,nil,'MouseDeltaY');
+{$ENDIF}
 {$ENDIF}
 {$ENDIF}
   end;

@@ -52,10 +52,6 @@ begin
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     RegisterProperty('Constraints', 'TSizeConstraints', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    RegisterProperty('Constraints', 'TSizeConstraints', iptrw);
-    {$ENDIF}
     RegisterProperty('BorderStyle', 'TBorderStyle', iptrw);
     RegisterProperty('Color', 'TColor', iptrw);
     RegisterProperty('Font', 'TFont', iptrw);
@@ -102,10 +98,6 @@ begin
     RegisterProperty('Active', 'Boolean', iptr);
     RegisterProperty('ActiveControl', 'TWinControl', iptrw);
     {$IFDEF DELPHI4UP}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    RegisterProperty('Constraints', 'TSizeConstraints', iptrw);
-    {$ENDIF}
-    {$IFDEF FPC}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     RegisterProperty('Constraints', 'TSizeConstraints', iptrw);
     {$ENDIF}

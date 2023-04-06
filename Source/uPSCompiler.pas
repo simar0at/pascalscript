@@ -907,10 +907,8 @@ type
 
   {$IFNDEF PS_USESSUPPORT}
   TPSOnWriteLineEvent = function (Sender: TPSPascalCompiler; Position: Cardinal): Boolean;
-  TPSOnWriteLine2Event = function (Sender: TPSPascalCompiler; Position: Cardinal; IsProcExit: Boolean): Boolean;
   {$ELSE}
   TPSOnWriteLineEvent = function (Sender: TPSPascalCompiler; FileName: tbtString; Position: Cardinal): Boolean;
-  TPSOnWriteLine2Event = function (Sender: TPSPascalCompiler; FileName: tbtString; Position: Cardinal; IsProcExit: Boolean): Boolean;
   {$ENDIF}
 
   TPSOnExternalProc = function (Sender: TPSPascalCompiler; Decl: TPSParametersDecl; const Name, FExternal: tbtString): TPSRegProc;
@@ -954,7 +952,6 @@ type
     FOnBeforeOutput: TPSOnNotify;
     FOnBeforeCleanup: TPSOnNotify;
     FOnWriteLine: TPSOnWriteLineEvent;
-    FOnWriteLine2: TPSOnWriteLine2Event;
     FContinueOffsets, FBreakOffsets: TPSList;
     FOnTranslateLineInfo: TPSOnTranslateLineInfoProc;
     FAutoFreeList: TPSList;
@@ -1040,7 +1037,7 @@ type
     procedure Debug_WriteParams(ProcNo: Cardinal; Proc: TPSInternalProcedure);
 
     procedure Debug_WriteLine(BlockInfo: TPSBlockInfo);
-    procedure Debug_WriteLine2(BlockInfo: TPSBlockInfo; IsProcExit: Boolean);
+
 
     function IsCompatibleType(p1, p2: TPSType; Cast: Boolean): Boolean;
 
@@ -1182,8 +1179,6 @@ type
 	
     property OnWriteLine: TPSOnWriteLineEvent read FOnWriteLine write FOnWriteLine;
 
-    property OnWriteLine2: TPSOnWriteLine2Event read FOnWriteLine2 write FOnWriteLine2;
-
     property OnExternalProc: TPSOnExternalProc read FOnExternalProc write FOnExternalProc;
 	
     property OnUseVariable: TPSOnUseVariable read FOnUseVariable write FOnUseVariable;
@@ -1216,9 +1211,10 @@ type
 
     property AttributesCloseTokenID: TPSPasToken read FAttributesCloseTokenID write FAttributesCloseTokenID;
 
+    {$PUSH}
     {$WARNINGS OFF}
     property UnitName: tbtString read FUnitName;
-    {$WARNINGS ON}
+    {$POP}
   end;
   TIFPSPascalCompiler = TPSPascalCompiler;
 
@@ -2158,8 +2154,8 @@ begin
             case VCType.BaseType of
               btU8: VCType := FindAndAddType(Owner, '!OPENARRAYOFU8', 'array of Byte');
               btS8: VCType := FindAndAddType(Owner, '!OPENARRAYOFS8', 'array of ShortInt');
-              btU16: VCType := FindAndAddType(Owner, '!OPENARRAYOFU16', 'array of Word');
-              btS16: VCType := FindAndAddType(Owner, '!OPENARRAYOFS16', 'array of SmallInt');
+              btU16: VCType := FindAndAddType(Owner, '!OPENARRAYOFU16', 'array of SmallInt');
+              btS16: VCType := FindAndAddType(Owner, '!OPENARRAYOFS16', 'array of Word');
               btU32: VCType := FindAndAddType(Owner, '!OPENARRAYOFU32', 'array of Cardinal');
               btS32: VCType := FindAndAddType(Owner, '!OPENARRAYOFS32', 'array of LongInt');
               btSingle: VCType := FindAndAddType(Owner, '!OPENARRAYOFSINGLE', 'array of Single');
@@ -4082,19 +4078,8 @@ begin
       p := TPSArrayType.Create;
       p.BaseType := btArray;
     end;
-    if Name <> '' then
-    begin
-      p.OriginalName := Name;
-      p.Name := FastUppercase(Name);
-    end
-    else
-    begin
-      if TypeNo.OriginalName = '' then
-        p.OriginalName := 'array of ' + TypeNo.Name
-      else
-        p.OriginalName := 'array of ' + TypeNo.OriginalName;
-      p.Name := FastUppercase(p.OriginalName);
-    end;
+    p.Name := FastUppercase(Name);
+    p.OriginalName := Name;
     {$IFDEF PS_USESSUPPORT}
     p.DeclareUnit:=fModule;
     {$ENDIF}
@@ -5345,7 +5330,7 @@ begin
           not FType.Attributes[i].FAttribType.OnApplyAttributeToType(Self, FType, FType.Attributes[i]) then begin
         Attr.Free;
         Exit;
-      end;
+    end;
     end;
     Attr.Free;
     if FParser.CurrTokenID <> CSTI_Semicolon then
@@ -5359,21 +5344,10 @@ begin
 end;
 
 procedure TPSPascalCompiler.Debug_WriteLine(BlockInfo: TPSBlockInfo);
-begin
-  Debug_WriteLine2(BlockInfo, False);
-end;
-
-procedure TPSPascalCompiler.Debug_WriteLine2(BlockInfo: TPSBlockInfo; IsProcExit: Boolean);
 var
   b: Boolean;
 begin
-  if @FOnWriteLine2 <> nil then begin
-    {$IFNDEF PS_USESSUPPORT}
-    b := FOnWriteLine2(Self, FParser.CurrTokenPos, IsProcExit);
-    {$ELSE}
-    b := FOnWriteLine2(Self, FModule, FParser.CurrTokenPos, IsProcExit);
-    {$ENDIF}
-  end else if @FOnWriteLine <> nil then begin
+  if @FOnWriteLine <> nil then begin
     {$IFNDEF PS_USESSUPPORT}
     b := FOnWriteLine(Self, FParser.CurrTokenPos);
     {$ELSE}
@@ -9132,7 +9106,6 @@ begin
           result := false;
           exit;
         end;
-        Val.SetParserPos(FParser);
       end;
       if FParser.CurrTokenId = cr then
       begin
@@ -10983,7 +10956,7 @@ begin
         end;
       CSTII_Exit:
         begin
-          Debug_WriteLine2(BlockInfo, BlockInfo.SubType = tProcBegin);
+          Debug_WriteLine(BlockInfo);
           BlockWriteByte(BlockInfo, Cm_R);
           FParser.Next;
           if (BlockInfo.SubType = tifOneliner) or (BlockInfo.SubType = TOneLiner) then
@@ -11125,7 +11098,7 @@ begin
   if (BlockInfo.SubType = tMainBegin) or (BlockInfo.SubType = tProcBegin)
  {$IFDEF PS_USESSUPPORT} or (BlockInfo.SubType = tUnitInit) or (BlockInfo.SubType = tUnitFinish) {$endif} then  //nvds
   begin
-    Debug_WriteLine2(BlockInfo, BlockInfo.SubType = tProcBegin);
+    Debug_WriteLine(BlockInfo);
     BlockWriteByte(BlockInfo, Cm_R);
     {$IFDEF PS_USESSUPPORT}
     if FParser.CurrTokenId = CSTII_End then //nvds
@@ -13281,7 +13254,7 @@ begin
   begin
     ExportName := True;
   end;
-  AddDelphiFunction('function IdispatchInvoke(Self: IDispatch; PropertySet: Boolean; const Name: AnsiString; Par: array of Variant): Variant;');
+  AddDelphiFunction('function IdispatchInvoke(Self: IDispatch; PropertySet: Boolean; const Name: string; Par: array of Variant): Variant;');
  {$ENDIF}
 {$ENDIF}
 end;

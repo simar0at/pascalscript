@@ -1,8 +1,3 @@
-{$IFDEF DELPHI}
-  {$DEFINE PS_RESBEFOREPARAMETERS}
-  {$DEFINE x64_string_result_as_varparameter}
-{$ENDIF}
-
 { implementation of x64 abi }
 //procedure DebugBreak; external 'Kernel32.dll';
 const

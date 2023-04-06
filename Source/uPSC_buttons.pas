@@ -29,9 +29,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('GroupIndex', 'Integer', iptrw);
     RegisterProperty('Down', 'Boolean', iptrw);
     RegisterProperty('Caption', 'string', iptrw);
@@ -56,9 +53,6 @@ begin
   with Cl.AddClassN(cl.FindClass('TButton'), 'TBitBtn') do
   begin
     {$IFDEF DELPHI4UP}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
-    {$IFDEF FPC}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
     RegisterProperty('Glyph', 'TBitmap', iptrw);

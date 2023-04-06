@@ -55,9 +55,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('Caption', 'string', iptrw);
     RegisterProperty('Color', 'TColor', iptrw);
     RegisterProperty('Font', 'TFont', iptrw);
@@ -109,9 +106,6 @@ begin
   begin
     RegisterProperty('Alignment', 'TAlignment', iptrw);
     {$IFDEF DELPHI4UP}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
-    {$IFDEF FPC}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
     RegisterProperty('AutoSize', 'Boolean', iptrw);
@@ -179,9 +173,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('AutoSelect', 'Boolean', iptrw);
     RegisterProperty('AutoSize', 'Boolean', iptrw);
     RegisterProperty('BorderStyle', 'TBorderStyle', iptrw);
@@ -245,9 +236,6 @@ begin
     RegisterProperty('Lines', 'TStrings', iptrw);
     {$ENDIF}
     {$IFDEF DELPHI4UP}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
-    {$IFDEF FPC}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
     RegisterProperty('Alignment', 'TAlignment', iptrw);
@@ -323,9 +311,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('Color', 'TColor', iptrw);
     RegisterProperty('DropDownCount', 'Integer', iptrw);
     RegisterProperty('Font', 'TFont', iptrw);
@@ -380,9 +365,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('Cancel', 'Boolean', iptrw);
     RegisterProperty('Caption', 'string', iptrw);
     RegisterProperty('Default', 'Boolean', iptrw);
@@ -432,9 +414,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('Caption', 'string', iptrw);
     RegisterProperty('Checked', 'Boolean', iptrw);
     RegisterProperty('Color', 'TColor', iptrw);
@@ -477,9 +456,6 @@ begin
   begin
     RegisterProperty('Alignment', 'TAlignment', iptrw);
     {$IFDEF DELPHI4UP}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
-    {$IFDEF FPC}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
     RegisterProperty('Caption', 'string', iptrw);
@@ -544,9 +520,6 @@ begin
     {$IFDEF DELPHI4UP}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
-    {$IFDEF FPC}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
     RegisterProperty('BorderStyle', 'TBorderStyle', iptrw);
     RegisterProperty('Color', 'TColor', iptrw);
     RegisterProperty('Font', 'TFont', iptrw);
@@ -598,9 +571,6 @@ begin
   with Cl.AddClassN(cl.FindClass('TWinControl'), 'TScrollBar') do
   begin
     {$IFDEF DELPHI4UP}
-    RegisterProperty('Anchors', 'TAnchors', iptrw);
-    {$ENDIF}
-    {$IFDEF FPC}
     RegisterProperty('Anchors', 'TAnchors', iptrw);
     {$ENDIF}
     RegisterProperty('Kind', 'TScrollBarKind', iptrw);
