@@ -15,6 +15,7 @@ object frmMain: TfrmMain
   OnClose = FormClose
   OnCreate = FormCreate
   Position = poDefault
+  LCLVersion = '2.2.6.0'
   object Splitter1: TSplitter
     Cursor = crVSplit
     Left = 0
@@ -65,7 +66,7 @@ object frmMain: TfrmMain
       OnClick = EditorClick
       OnKeyDown = EditorKeyDown
       OnKeyUp = EditorKeyUp
-      Gutter.Width = 67
+      Gutter.Width = 72
       Gutter.MouseActions = <>
       RightGutter.Width = 0
       RightGutter.MouseActions = <>
@@ -102,11 +103,11 @@ object frmMain: TfrmMain
       OnDropFiles = EditorDropFiles
       inline SynLeftGutterPartList1: TSynGutterPartList
         object SynGutterMarks1: TSynGutterMarks
-          Width = 24
+          Width = 30
           MouseActions = <>
         end
         object SynGutterLineNumber1: TSynGutterLineNumber
-          Width = 27
+          Width = 21
           MouseActions = <>
           MarkupInfo.Background = clBtnFace
           MarkupInfo.Foreground = clNone
@@ -116,18 +117,19 @@ object frmMain: TfrmMain
           LeadingZeros = False
         end
         object SynGutterChanges1: TSynGutterChanges
-          Width = 4
+          Width = 5
           MouseActions = <>
           ModifiedColor = 59900
           SavedColor = clGreen
         end
         object SynGutterSeparator1: TSynGutterSeparator
-          Width = 2
+          Width = 3
           MouseActions = <>
           MarkupInfo.Background = clWhite
           MarkupInfo.Foreground = clGray
         end
         object SynGutterCodeFolding1: TSynGutterCodeFolding
+          Width = 13
           MouseActions = <>
           MarkupInfo.Background = clNone
           MarkupInfo.Foreground = clGray
@@ -180,7 +182,7 @@ object frmMain: TfrmMain
     end
     object ToolButton4: TToolButton
       Left = 76
-      Height = 24
+      Height = 8
       Top = 0
       Caption = 'ToolButton4'
       ImageIndex = 3
@@ -198,7 +200,7 @@ object frmMain: TfrmMain
     end
     object ToolButton8: TToolButton
       Left = 109
-      Height = 24
+      Height = 8
       Top = 0
       Caption = 'ToolButton8'
       ImageIndex = 5
@@ -220,7 +222,7 @@ object frmMain: TfrmMain
     end
     object ToolButton6: TToolButton
       Left = 167
-      Height = 24
+      Height = 8
       Top = 0
       Caption = 'ToolButton6'
       ImageIndex = 4

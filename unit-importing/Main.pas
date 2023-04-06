@@ -79,6 +79,7 @@ type
     FFile       : string;
     fOutputDir  : String;
     fPrifix     : String;
+    FTabcontrol1Tabs: TStringList;
     FAfterInterfaceDeclaration: string;
     FAutoRenameOverloadedMethods: Boolean;        
     fLastUsed   : TStringList;
@@ -227,7 +228,7 @@ begin
     Parser.AutoRenameOverloadedMethods := FAutoRenameOverloadedMethods;
 
     try
-      Parser.ParseUnit((Tabcontrol1.tabs.Objects[0] as tStringList).Text);
+      Parser.ParseUnit((FTabcontrol1Tabs.Objects[0] as tStringList).Text);
       WriteLn('Succesfully parsed');
     except
       on E: Exception do
@@ -250,19 +251,22 @@ begin
     if FSingleUnit then
     begin
       list := TstringList.create;
-      TabControl1.tabs.AddObject(parser.UnitNameCmp,list);
+      TabControl1.Tabs.Add(parser.UnitNameCmp);
+      FTabcontrol1Tabs.AddObject(parser.UnitNameCmp,list);
       List.Text := parser.OutUnitList.Text;
       List.SaveToFile(Path + parser.UnitNameCmp);
     end else begin
       List := TStringList.Create;
       List.Text := parser.OutputRT;
       List.SaveToFile(Path + parser.UnitnameRT);
-      TabControl1.tabs.AddObject(parser.UnitnameRT,list);
+      TabControl1.Tabs.Add(parser.UnitnameRT);
+      FTabcontrol1Tabs.AddObject(parser.UnitnameRT,list);
 
       List := TStringList.Create;
       List.Text := parser.OutputDT;
       List.SaveToFile(Path + parser.UnitnameCT);
-      TabControl1.tabs.AddObject(parser.UnitnameCT,list);
+      TabControl1.Tabs.Add(parser.UnitnameCT);
+      FTabcontrol1Tabs.AddObject(parser.UnitnameCT,list);
     end;
     WriteLn('Files saved');
   finally
@@ -311,7 +315,8 @@ begin
   mnuExit       .Tag := EXIT_CMD      ;
   mnuConvert    .Tag := CONVERT_CMD   ;
   TabControl1.tabs.Text := '';
-  TabControl1.tabs.AddObject('Main',TStringList.Create);
+  TabControl1.Tabs.Add('Main');
+  FTabcontrol1Tabs.AddObject('Main',TStringList.Create);
 
   If ParamCount>0 then
     LoadFile(Paramstr(1));
@@ -415,7 +420,8 @@ begin
   FFile := aFileName;
   ClearTabs;
   TabControl1Changing(Self, AllowChange);
-  TabControl1.Tabs.AddObject(ExtractFileName(FFile), GetText(FFile));
+  TabControl1.Tabs.Add(ExtractFileName(FFile));
+  FTabcontrol1Tabs.AddObject(ExtractFileName(FFile), GetText(FFile));
 
   // if it allready exists in the list the please remove it we do not want any duplicates.
   if fLastUsed.IndexOf(FFile) > -1 then
@@ -436,7 +442,7 @@ var
   begin
     If pos('*',Tabcontrol1.tabs[Tabid])<>0 then
       Tabcontrol1.tabs[Tabid] := StringReplace(Tabcontrol1.tabs[Tabid],' *','',[]);
-    (Tabcontrol1.tabs.Objects[TabId] as tStringList).SaveToFile(fOutputDir+Tabcontrol1.tabs[Tabid]);
+    (FTabcontrol1Tabs.Objects[TabId] as tStringList).SaveToFile(fOutputDir+Tabcontrol1.tabs[Tabid]);
   end;
 
 begin
@@ -472,7 +478,7 @@ begin
     If Tabcontrol1.TabIndex = -1 then begin
       Editor.Lines.Text := '';
     end else begin
-      Editor.Lines.Assign(Tabcontrol1.tabs.Objects[Tabcontrol1.TabIndex] as TStringList);
+      Editor.Lines.Assign(FTabcontrol1Tabs.Objects[Tabcontrol1.TabIndex] as TStringList);
       Editor.ReadOnly := Tabcontrol1.TabIndex < 0;
       Editor.Modified := false;
     end;
@@ -486,7 +492,7 @@ procedure TfrmMain.TabControl1Changing(Sender: TObject;
 begin
   AllowChange:= True;
   If Tabcontrol1.TabIndex = -1 then exit;
-  (Tabcontrol1.tabs.Objects[Tabcontrol1.TabIndex]as TStringList).Assign(Editor.Lines);
+  (FTabcontrol1Tabs.Objects[Tabcontrol1.TabIndex]as TStringList).Assign(Editor.Lines);
 end;
 
 procedure TfrmMain.EditorChange(Sender: TObject);
@@ -505,7 +511,7 @@ begin
   if firsttoo then l := 0 else l := 1;
   for i := TabControl1.Tabs.Count -1 downto l do
   begin
-    TabControl1.Tabs.Objects[i].Free;
+    FTabcontrol1Tabs.Objects[i].Free;
     TabControl1.Tabs.Delete(i);
   end;
 end;
@@ -592,12 +598,14 @@ begin
   fLastUsed := TStringList.Create;
   ReadLastUsedList;
   BuildLastUsedMenu(mnuRecent);
+  FTabcontrol1Tabs := TStringList.Create;
 end;
 
 destructor TfrmMain.Destroy;
 begin
   SaveLastUsedList;
   fLastUsed.Free;
+  FTabcontrol1Tabs.Free;
   inherited;
 end;
 
